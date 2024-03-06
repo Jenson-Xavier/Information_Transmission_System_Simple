@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的服务器</title>
+    <script>
+        //删除提示判断，参数uu是成功的删除url地址
+        function doDel(uu){
+            if(confirm("确定要删除吗？")){
+                //网页跳转
+                window.location=uu;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <a href="{% url 'userprofile:logout' %}">退出</a>
+    <center>
+        <h1>我的服务器</h1>
+        <a href="{% url 'myapp:users' %}">浏览信息</a> |
+        <a href="{% url 'myapp:addusers' %}">添加信息</a> 
+        <hr/>
+        
+        <h3>浏览服务器信息</h3>
+        <table width="800" border="1">
+            <tr>
+                <th>IP</th>
+                <th>服务器地址</th>
+                <th>电脑型号</th>
+
+                <th>管理员姓名</th>
+                <th>管理员电话</th>
+                <th>管理员邮箱</th>
+                <th>服务器温度</th>
+                <th>负载</th>
+                <th>操作</th>
+            </tr>
+            {% for user in userslist %}
+                <tr>
+                    <td>{{user.ip}}</td>
+                    <td>{{user.address}}</td>
+                    <td>{{user.model}}</td>
+                    <td>{{user.ownername}}</td>
+                    <td>{{user.ownerphone}}</td>
+                    <td>{{user.owneremail}}</td>
+                    <td>{{user.temperature}}</td>
+                    <td>{{user.loads}}</td>
+                    <td>
+                        <a href="{% url 'myapp:editusers' user.id %}">编辑</a>
+                        <a href="javascript:doDel('{% url 'myapp:delusers' user.id %}');">删除</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

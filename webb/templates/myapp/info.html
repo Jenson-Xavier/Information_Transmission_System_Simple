@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>我的服务器</h1>
+        <a href="{% url 'myapp:users' %}">浏览信息</a> |
+        <a href="{% url 'myapp:addusers' %}">添加信息</a> 
+        <hr/>
+        <h2>操作提示信息</h2>
+        <h3>{{info}}</h3>
+    </center>
+    
+</body>
+</html>
